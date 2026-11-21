@@ -1,0 +1,134 @@
+{
+  "backend_config": {
+    "description": "RVC WebUI",
+    "hint": "配置本机 RVC20240604Nvidia 的 WebUI 地址；保存后需重载插件。",
+    "type": "object",
+    "items": {
+      "base_url": {
+        "description": "WebUI 根地址",
+        "hint": "RVC20240604Nvidia 的 Gradio WebUI 地址，AstrBot 与 RVC 需要运行在同一台机器。",
+        "type": "string",
+        "default": "http://127.0.0.1:7897/"
+      },
+      "models": {
+        "description": "模型列表",
+        "hint": "插件初始化时自动从当前后端刷新并保存。",
+        "type": "list",
+        "default": []
+      },
+      "separator_models": {
+        "description": "分离模型列表",
+        "hint": "插件初始化时从 RVC WebUI 自动读取并保存。",
+        "type": "list",
+        "default": []
+      }
+    }
+  },
+  "search_config": {
+    "description": "搜歌配置",
+    "hint": "歌曲搜索按 astrbot_plugin_music 中已启用音源的优先级和回退链自动选择。",
+    "type": "object",
+    "items": {
+      "song_limit": {
+        "description": "搜索歌曲数量限制",
+        "hint": "每次显示的候选歌曲数量。",
+        "type": "int",
+        "slider": {
+          "min": 1,
+          "max": 20,
+          "step": 1
+        },
+        "default": 5
+      },
+      "timeout": {
+        "description": "选择等待超时时长（秒）",
+        "hint": "等待用户一次选择歌曲、音色、翻唱范围、升降调和混响的最长时间。",
+        "type": "int",
+        "slider": {
+          "min": 10,
+          "max": 300,
+          "step": 10
+        },
+        "default": 30
+      }
+    }
+  },
+  "inference_config": {
+    "description": "推理配置",
+    "hint": "配置翻唱推理、人声分离和混音参数。",
+    "type": "object",
+    "items": {
+      "timeout": {
+        "description": "推理超时时长（秒）",
+        "hint": "等待后端完成一首歌曲的最长时间。",
+        "type": "int",
+        "slider": {
+          "min": 30,
+          "max": 1800,
+          "step": 30
+        },
+        "default": 300
+      },
+      "separator_model": {
+        "description": "人声分离模型",
+        "hint": "插件自动调用的 RVC UVR5 模型名称；可用名称会在初始化时刷新到后端配置。",
+        "type": "string",
+        "options": [
+          "HP5_only_main_vocal",
+          "HP3_all_vocals",
+          "HP2_all_vocals"
+        ],
+        "default": "HP5_only_main_vocal"
+      },
+      "default_model": {
+        "description": "默认翻唱音色",
+        "hint": "填写后端配置中显示的原始模型名；留空或模型不存在时使用第一个可用音色。",
+        "type": "string",
+        "default": ""
+      },
+      "default_mode": {
+        "description": "默认翻唱范围",
+        "hint": "选择回复中未指定“高潮”或“全曲”时使用的范围。",
+        "type": "string",
+        "options": [
+          "高潮",
+          "全曲"
+        ],
+        "default": "高潮"
+      },
+      "chorus_duration": {
+        "description": "高潮片段时长（秒）",
+        "hint": "高潮片段的期望时长，结尾会对齐歌词行；无法识别副歌时自动选取歌曲中后段。",
+        "type": "int",
+        "slider": {
+          "min": 15,
+          "max": 90,
+          "step": 5
+        },
+        "default": 30
+      },
+      "vocal_volume": {
+        "description": "人声音量（dB）",
+        "hint": "范围 -3 到 3，0 表示不调整。",
+        "type": "float",
+        "slider": {
+          "min": -3,
+          "max": 3,
+          "step": 0.5
+        },
+        "default": 0
+      },
+      "accompaniment_volume": {
+        "description": "伴奏音量（dB）",
+        "hint": "范围 -3 到 3，0 表示不调整。",
+        "type": "float",
+        "slider": {
+          "min": -3,
+          "max": 3,
+          "step": 0.5
+        },
+        "default": 0
+      }
+    }
+  }
+}
