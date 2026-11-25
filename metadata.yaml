@@ -2,6 +2,6 @@ name: astrbot_plugin_music_cover
 display_name: 音乐翻唱
 desc: 基于点歌插件音源和本机 RVC WebUI 生成 AI 翻唱
 help: 安装并启用 astrbot_plugin_music 后，使用 /翻唱 点歌翻唱
-version: v1.0.0
+version: v1.0.1
 author: 饰乐
 repo: https://github.com/Zhalstar/astrbot_plugin_music_cover
